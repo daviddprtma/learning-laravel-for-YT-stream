@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::table('obats',function(Blueprint $table){
             $table->unsignedBigInteger('kategoriobat_id');
 
-            $table->foreign('kategoriobat_id')->references(('id'))->on('obats');
+            $table->foreign('kategoriobat_id')->references('id')->on('kategoriobats');
         });
     }
 
@@ -25,5 +25,9 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::table('obats',function(Blueprint $table){
+            $table->dropForeign(['kategoriobat_id']);
+            $table->dropColumn('kategoriobat_id');
+        });
     }
 };

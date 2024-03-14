@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +48,12 @@ Route::get('/equipments/{equip_id}',function($equip_id){
         'equip_id' => $equip_id
     ]);
 })->name('equip_detail');
+
+
+Route::resource('products',ProductController::class);
+Route::resource('categories',CategoryController::class);
+
+
+Route::get('/report/listmedicine/{id}',[CategoryController::class, 'showList'])->name(
+    'reportShowMedicine'
+);
