@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicineController extends Controller
 {
@@ -13,6 +14,8 @@ class MedicineController extends Controller
     public function index()
     {
         //
+        $data = Medicine::all();
+        return view('medicine.index',compact('data'));
     }
 
     /**
@@ -62,4 +65,16 @@ class MedicineController extends Controller
     {
         //
     }
+    public function obatTermahal(){
+        // query builder medicines & category
+        // Tampilkan kategori dan nama obat yang memiliki harga termahal
+        $result = DB::table('medicines as m')
+                  ->select('m.name','c.category_name','m.price','m.image','m.form','m.formula','m.description')
+                  ->join('categories as c','c.id','=','m.category_id')
+                  ->where('m.price',DB::raw('(select max(price) from medicines)'))
+                  ->get();
+                //   dd($result);
+        return view('report.obat_termahal' ,compact('result'));
+    }
+
 }

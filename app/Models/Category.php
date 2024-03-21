@@ -16,6 +16,6 @@ class Category extends Model
     }
 
     public function medicines(){
-        return $this->hasMany('App\Models\Medicine');
+        return $this->hasMany('App\Models\Medicine','category_id','id');
     }
 }

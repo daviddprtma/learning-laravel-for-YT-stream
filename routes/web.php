@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/helloworld',function(){
     return "Selamat pagi Pak Dosen gimana kabarnya hari ini?";
@@ -51,9 +52,19 @@ Route::get('/equipments/{equip_id}',function($equip_id){
 
 
 Route::resource('products',ProductController::class);
+Route::resource('medicines',MedicineController::class);
 Route::resource('categories',CategoryController::class);
 
 
 Route::get('/report/listmedicine/{id}',[CategoryController::class, 'showList'])->name(
     'reportShowMedicine'
 );
+
+Route::get('/report/obattermahal',[MedicineController::class, 'obatTermahal'])->name(
+    'obatTermahal'
+);
+
+
+Route::get('/conquer',function(){
+    return view('layouts.conquer');
+});
