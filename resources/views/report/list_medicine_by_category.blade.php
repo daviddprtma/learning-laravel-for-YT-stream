@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <h2>List Medicine by category: </h2>
     <p>ID Category: {{ $id }} with name: {{ $nameCategory }}</p>
     <br>
@@ -32,6 +33,13 @@
                     <td>{{ $li->form }}</td>
                     <td>{{ $li->formula }}</td>
                     <td>{{ $li->price }}</td>
+                    <td>
+                        <ul>
+                            @foreach ($li->categories as $lim)
+                                <li>{{ $lim->category_name }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
                 </tr>
             @endforeach
 

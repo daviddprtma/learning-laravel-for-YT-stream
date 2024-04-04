@@ -64,6 +64,9 @@ Route::get('/report/obattermahal',[MedicineController::class, 'obatTermahal'])->
     'obatTermahal'
 );
 
+Route::post('/products/showInfo',[ProductController::class,'showInfo'])->name('products.showInfo');
+Route::post('/category/showProducts',[CategoryController::class,'showProducts'])->name('category.showProducts');
+
 
 Route::get('/conquer',function(){
     return view('layouts.conquer');

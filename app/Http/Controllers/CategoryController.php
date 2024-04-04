@@ -82,4 +82,16 @@ class CategoryController extends Controller
 
         return view('report.list_medicine_by_category',compact('id','nameCategory','result','getTotalData'));
     }
+
+    public function showProducts()
+    {
+        $cat=Category::find($_POST['category_id']);
+        $nama=$cat->nama_kategori;
+        $data=$cat->products;
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('category.showProducts',compact('nama','data'))->render()
+        ),200);
+    }
+
 }

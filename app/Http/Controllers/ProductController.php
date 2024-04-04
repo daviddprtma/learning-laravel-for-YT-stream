@@ -74,4 +74,14 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function showInfo()
+    {
+      $result=Product::orderBy('product_price','DESC')->first();
+      return response()->json(array(
+        'status'=>'oke',
+        'msg'=>"<div class='alert alert-info'>
+        Did you know? <br>The most expensive product is ". $result->product_name . "</div>"
+      ),200);
+    }
 }

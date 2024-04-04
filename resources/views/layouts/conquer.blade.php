@@ -152,7 +152,7 @@
 
                     <li class="sidebar-search-wrapper">
                     <li class="start ">
-                        <a href="{{ url('/admin') }}">
+                        <a href="{{ route('welcome') }}">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
